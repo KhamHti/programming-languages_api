@@ -21,6 +21,7 @@ module.exports = {
       }
     );
   },
+
   getAll: (callBack) => {
     pool.query(`SELECT * FROM programming_languages`, [], (error, results) => {
       if (error) {
@@ -44,50 +45,38 @@ module.exports = {
       }
     );
   },
-  // updateUser: (data, callBack) => {
-  //   pool.query(
-  //     `UPDATE register SET firstName=?, lastName=?, gender=?, email=?, password=?, phNum=? WHERE id = ?`,
-  //     [
-  //       data.firstName,
-  //       data.lastName,
-  //       data.gender,
-  //       data.email,
-  //       data.password,
-  //       data.phNum,
-  //       data.id,
-  //     ],
-  //     (error, results, fields) => {
-  //       if (error) {
-  //         callBack(error);
-  //       }
 
-  //       return callBack(null, results);
-  //     }
-  //   );
-  // },
-  // deleteUser: (data, callBack) => {
-  //   pool.query(
-  //     `DELETE FROM register WHERE id = ?`,
-  //     [data.id],
-  //     (error, results, fields) => {
-  //       if (error) {
-  //         callBack(error);
-  //       }
-  //       return callBack(null, results);
-  //     }
-  //   );
-  // },
-  // getUserByUserEmail: (email, callBack) => {
-  //   pool.query(
-  //     `SELECT * FROM register WHERE email = ?`,
-  //     [email],
-  //     (error, results, fields) => {
-  //       if (error) {
-  //         console.log(error);
-  //         callBack(error);
-  //       }
-  //       return callBack(null, results[0]);
-  //     }
-  //   );
-  // },
+  updateData: (data, callBack) => {
+    pool.query(
+      `UPDATE programming_languages SET name=?, released_year=?, githut_rank=?, pypl_rank=?, tiobe_rank=? WHERE id = ?`,
+      [
+        data.name,
+        data.released_year,
+        data.githut_rank,
+        data.pypl_rank,
+        data.tiobe_rank,
+        data.id,
+      ],
+      (error, results, fields) => {
+        if (error) {
+          callBack(error);
+        }
+
+        return callBack(null, results);
+      }
+    );
+  },
+
+  deleteData: (data, callBack) => {
+    pool.query(
+      `DELETE FROM programming_languages WHERE id = ?`,
+      [data.id],
+      (error, results, fields) => {
+        if (error) {
+          callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
 };

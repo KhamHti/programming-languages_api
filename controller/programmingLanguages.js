@@ -2,6 +2,8 @@ const {
   create,
   getAll,
   getProgrammingLanguageById,
+  updateData,
+  deleteData,
 } = require("../services/programmingLanguages");
 
 module.exports = {
@@ -50,6 +52,41 @@ module.exports = {
       return res.json({
         success: 1,
         data: results,
+      });
+    });
+  },
+  updateData: (req, res) => {
+    const body = req.body;
+    updateData(body, (err, results) => {
+      if (err) {
+        console.log(err);
+        return res.json({
+          success: 0,
+          message: "Error in updating programming language",
+        });
+      }
+      return res.json({
+        success: 1,
+        message: "Programming language updated successfully",
+      });
+    });
+  },
+  deleteData: (req, res) => {
+    const body = req.body;
+    deleteData(body, (err, results) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      if (!results) {
+        res.json({
+          success: 0,
+          message: "Error in deleting programming language",
+        });
+      }
+      return res.json({
+        success: 1,
+        message: "Programming language deleted successfully",
       });
     });
   },
