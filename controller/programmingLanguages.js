@@ -1,4 +1,8 @@
-const { create, getAll } = require("../services/programmingLanguages");
+const {
+  create,
+  getAll,
+  getProgrammingLanguageById,
+} = require("../services/programmingLanguages");
 
 module.exports = {
   createData: (req, res) => {
@@ -23,6 +27,25 @@ module.exports = {
       if (err) {
         console.log(err);
         return;
+      }
+      return res.json({
+        success: 1,
+        data: results,
+      });
+    });
+  },
+  getOne: (req, res) => {
+    const id = req.params.id;
+    getProgrammingLanguageById(id, (err, results) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      if (!results) {
+        res.json({
+          success: 0,
+          message: "Programming languages Not Found",
+        });
       }
       return res.json({
         success: 1,

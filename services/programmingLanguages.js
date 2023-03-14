@@ -31,20 +31,19 @@ module.exports = {
     });
   },
 
-  // getUserByUserId: (id, callBack) => {
-  //   pool.query(
-  //     `SELECT id, firstName, lastName, gender, email, phNum FROM register WHERE id = ?`,
-
-  //     [id],
-  //     (error, results, fields) => {
-  //       if (error) {
-  //         console.log(error);
-  //         callBack(error);
-  //       }
-  //       return callBack(null, results[0]);
-  //     }
-  //   );
-  // },
+  getProgrammingLanguageById: (id, callBack) => {
+    pool.query(
+      `SELECT id, name, released_year, githut_rank, pypl_rank, tiobe_rank FROM programming_languages WHERE id = ?`,
+      [id],
+      (error, results, fields) => {
+        if (error) {
+          console.log(error);
+          callBack(error);
+        }
+        return callBack(null, results[0]);
+      }
+    );
+  },
   // updateUser: (data, callBack) => {
   //   pool.query(
   //     `UPDATE register SET firstName=?, lastName=?, gender=?, email=?, password=?, phNum=? WHERE id = ?`,
