@@ -1,15 +1,3 @@
-// const config = {
-//   db: {
-//     host: 3306,
-//     user: root,
-//     password: password,
-//     database: restapitest123,
-//   },
-//   listParPage: 10,
-// };
-
-// module.exports = config;
-
 const { createPool } = require("mysql2");
 
 const pool = createPool({
